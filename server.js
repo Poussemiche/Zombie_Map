@@ -7,7 +7,7 @@ import api from "./routes";
 const start = async () => {
     try {
         const host = "0.0.0.0";
-        const port = 5000
+        const port = process.env.PORT || 5000
         const app = express();
 
         await database.authenticate();
