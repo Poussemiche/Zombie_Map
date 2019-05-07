@@ -8,12 +8,12 @@ import api from "./routes";
 const start = async () => {
     try {
         const host = "0.0.0.0";
-        const port = process.env.PORT || 5000
+        const port = process.env.PORT || 8888
         const app = express();
 
-        await database.authenticate();
+//        await database.authenticate();
 
-        await database.sync({ force: false });
+  //      await database.sync({ force: false });
 
         app.use(cors());
 
@@ -21,7 +21,9 @@ const start = async () => {
         app.use(bodyParser.json());
 
         app.get("/", (request, response) => {
-            response.send("Please feel free to use our api with /api");
+            response.json({
+              api :"Please feel free to use our api with /api"
+            });
         });
 
         app.use("/api", api)

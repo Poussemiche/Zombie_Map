@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon server.js --exec \"node --require @babel/register\""
+		"dev": "nodemon server.js --exec \"node --require @babel/register\"",
+		"start" : "nodemon server.js exec  \"node --require @babel/register\" "
 	},
 	"author": "",
 	"license": "ISC",
@@ -20,5 +21,8 @@
 		"@babel/preset-env": "^7.2.0",
 		"@babel/register": "^7.0.0",
 		"nodemon": "^1.18.7"
-	}
+	},
+  "engines": {
+    "node": "8.10.0"
+  }
 }
