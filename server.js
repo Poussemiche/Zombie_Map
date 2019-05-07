@@ -2,8 +2,9 @@ import express from "express";
 import bodyParser from "body-parser";
 import { db as database } from "./models";
 import cors from "cors";
+import dotenv from 'dotenv'
 import api from "./routes";
-
+dotenv.config()
 const start = async () => {
     try {
         const host = "0.0.0.0";
