@@ -77,4 +77,40 @@ api.put("/changePassword", async (req, res) => {
 	});
 });
 
+api.delete("/delete", async (req, res) => {
+	const { id } = req.body;
+
+	await User.findByPk(id).then(user => {
+		if (user) {
+			try {
+				user.destroy();
+				res.status(201).json({ data: { user } });
+			} catch (err) {
+				res.status(400).json({ err: err.message });
+			}
+		} else {
+			res.status(400).json({ err: "user not found" });
+		}
+	});
+});
+
+api.put("/addScore", async (req, res) => {
+	const { id, score } = req.body;
+
+	await User.findByPk(id).then(user => {
+		if (user) {
+			try {
+				user.update({
+					score: user.score + parseInt(score)
+				});
+				res.status(201).json({ data: { user } });
+			} catch (err) {
+				res.status(400).json({ err: err.message });				
+			}
+		} else {
+			res.status(400).json({ err: "user not found" });			
+		}
+	});
+});
+
 export default api;
