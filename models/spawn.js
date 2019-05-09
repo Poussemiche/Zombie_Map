@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 
-export default class User extends Model {
+export default class Spawn extends Model {
     static init(database) {
         return super.init(
             {
@@ -9,29 +9,33 @@ export default class User extends Model {
                     primaryKey: true,
 					autoIncrement: true
                 },
-                nickname: {
+                key: {
 					type: Sequelize.STRING,
 					allowNull: false,
 					validate: {
 						notEmpty: true
 					}
                 },
-                email: {
+                title: {
 					type: Sequelize.STRING,
 					allowNull: false,
 					validate: {
 						notEmpty: true
 					}
                 },
-                password: {
+                description: {
 					type: Sequelize.STRING,
+					allowNull: true
+                },
+                latitude: {
+					type: Sequelize.FLOAT,
 					allowNull: false,
 					validate: {
 						notEmpty: true
 					}
-                },
-                score: {
-					type: Sequelize.INTEGER,
+				},
+				longitude: {
+					type: Sequelize.FLOAT,
 					allowNull: false,
 					validate: {
 						notEmpty: true
@@ -39,7 +43,7 @@ export default class User extends Model {
 				}
             },
             {
-                tableName: "user",
+                tableName: "spawn",
                 sequelize: database,
 
                 indexes: [
