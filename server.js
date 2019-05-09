@@ -13,7 +13,7 @@ const start = async () => {
 
        await database.authenticate();
 
-       await database.sync({ force: true });
+       await database.sync({ force: false });
 
         app.use(cors());
 
