@@ -1,5 +1,6 @@
 import { Router } from "express";
 import User from "./user";
+import Type from "./type";
 
 const api = Router();
 
@@ -14,5 +15,6 @@ api.get("/", (req, res) => {
 });
 
 api.use("/user", User)
+api.use("/type", Type)
 
 export default api;
