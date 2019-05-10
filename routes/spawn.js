@@ -5,8 +5,8 @@ import Type from "../models/type";
 const api = Router();
 
 api.get("/show", async (req, res) => {
-	const Spawns = await Spawn.findAll();
-	res.status(201).json({ Spawns });
+	const spawns = await Spawn.findAll();
+	res.status(201).json({ spawns });
 });
 
 api.post("/create", async (req, res) => {
