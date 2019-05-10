@@ -7,7 +7,7 @@
 		"dev": "nodemon server.js --exec \"node --require @babel/register\"",
 		"start": "nodemon server.js --exec \"node --require @babel/register\""
 	},
-	"author": "",
+	"author": "quentin guichaoua",
 	"license": "ISC",
 	"dependencies": {
 		"cors": "^2.8.5",

@@ -2,6 +2,7 @@ import { Router } from "express";
 import User from "./user";
 import Type from "./type";
 import Spawn from "./spawn";
+import Reach from "./reach";
 
 const api = Router();
 
@@ -15,8 +16,9 @@ api.get("/", (req, res) => {
     });
 });
 
-api.use("/user", User)
-api.use("/type", Type)
-api.use("/spawn", Spawn)
+api.use("/user", User);
+api.use("/type", Type);
+api.use("/spawn", Spawn);
+api.use("/reach", Reach);
 
 export default api;
