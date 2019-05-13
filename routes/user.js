@@ -1,5 +1,7 @@
 import { Router } from "express";
 import User from "../models/user";
+import sgMail from "@sendgrid/mail";
+sgMail.setApiKey("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");
 
 const api = Router();
 
@@ -18,6 +20,16 @@ api.post("/register", async (req, res) => {
 			});
 
 			await user.save();
+
+			const msg = {
+				to: user.email,
+				from: 'app132847188@heroku.com',
+				subject: 'Your account has been created',
+				text: 'Your account has been created',
+				html: '<strong>Your account has been created</strong>',
+			};
+
+			sgMail.send(msg);
 
 			res.status(201).json({ data: { user } });
 		} else {
@@ -105,10 +117,10 @@ api.put("/addScore", async (req, res) => {
 				});
 				res.status(201).json({ data: { user } });
 			} catch (err) {
-				res.status(400).json({ err: err.message });				
+				res.status(400).json({ err: err.message });
 			}
 		} else {
-			res.status(400).json({ err: "user not found" });			
+			res.status(400).json({ err: "user not found" });
 		}
 	});
 });
