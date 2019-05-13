@@ -81,7 +81,7 @@ api.get("/getReach/:userId", async (req, res) => {
 				}
 			}
 		}).then(spawns => {
-			res.status(201).json({spawns});
+			res.status(201).json({ data: { spawns } });
 		});
 	} catch (err) {
 		res.status(400).json({ err: err.message });
