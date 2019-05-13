@@ -9,6 +9,11 @@ api.get("/show", async (req, res) => {
 	res.status(201).json({ spawns });
 });
 
+api.get("/get", async (req, res) => {
+	const spawns = await Spawn.findAll();
+	res.status(201).json({ data: { spawns }});
+});
+
 api.post("/create", async (req, res) => {
 	const { key, title, description, latitude, longitude, typeId } = req.body;
 
