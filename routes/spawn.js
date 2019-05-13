@@ -1,6 +1,10 @@
 import { Router } from "express";
 import Spawn from "../models/spawn";
 import Type from "../models/type";
+import Reach from "../models/reach";
+import Sequelize from "sequelize";
+
+const Op = Sequelize.Op;
 
 const api = Router();
 
@@ -56,6 +60,32 @@ api.delete("/delete", async (req, res) => {
 			res.status(400).json({ err: "spawn not found" });
 		}
 	});
+});
+
+api.get("/getReach/:userId", async (req, res) => {
+	const id = req.params.userId;
+	let spawnsId = []
+
+	await Reach.findAll({attributes: ['SpawnId'], raw: true, where: { UserId: id }}).then(reachs => {
+		// console.log(reachs);
+		reachs.forEach(reach => {
+			spawnsId.push(reach.SpawnId);
+		});
+	});
+
+	try {
+		await Spawn.findAll({
+			where: {
+				id: {
+					[Op.notIn]: spawnsId
+				}
+			}
+		}).then(spawns => {
+			res.status(201).json({spawns});
+		});
+	} catch (err) {
+		res.status(400).json({ err: err.message });
+	}
 });
 
 export default api;

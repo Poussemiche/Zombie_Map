@@ -16,7 +16,8 @@ api.post("/register", async (req, res) => {
 				nickname,
 				email,
 				password,
-				score: 0
+				score: 0,
+				admin: false
 			});
 
 			await user.save();

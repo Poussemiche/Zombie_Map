@@ -8,13 +8,6 @@ export default class Reach extends Model {
                     type: Sequelize.INTEGER,
                     primaryKey: true,
 					autoIncrement: true
-                },
-                reached: {
-					type: Sequelize.BOOLEAN,
-					allowNull: false,
-					validate: {
-						notEmpty: true
-					}
                 }
             },
             {

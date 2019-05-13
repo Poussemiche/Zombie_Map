@@ -36,6 +36,13 @@ export default class User extends Model {
 					validate: {
 						notEmpty: true
 					}
+				},
+				admin: {
+					type: Sequelize.BOOLEAN,
+					allowNull: false,
+					validate: {
+						notEmpty: true
+					}
 				}
             },
             {

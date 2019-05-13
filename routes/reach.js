@@ -20,8 +20,7 @@ api.post("/create", async (req, res) => {
 		try {
 			const reach = new Reach({
 				UserId: user.id,
-				SpawnId: spawn.id,
-				reached: false
+				SpawnId: spawn.id
 			});
 
 			await reach.save();
@@ -33,25 +32,6 @@ api.post("/create", async (req, res) => {
 	} else {
 		res.status(400).json({ err: "user or spawn not found" });
 	}
-});
-
-api.put("/reached", async (req, res) => {
-	const { id } = req.body;
-
-	await Reach.findByPk(id).then(reach => {
-		if (reach) {
-			try {
-				reach.update({
-					reached: true
-				});
-				res.status(201).json({ data: { reach } });
-			} catch (err) {
-				res.status(400).json({ err: err.message });
-			}
-		} else {
-			res.status(400).json({ err: "reach not found" });
-		}
-	});
 });
 
 api.delete("/delete", async (req, res) => {
