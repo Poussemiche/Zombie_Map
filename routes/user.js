@@ -1,7 +1,7 @@
 import { Router } from "express";
 import User from "../models/user";
 import sgMail from "@sendgrid/mail";
-sgMail.setApiKey("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");
+sgMail.setApiKey(process.env.SENDGRID_API);
 
 const api = Router();
 
