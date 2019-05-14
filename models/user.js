@@ -20,7 +20,8 @@ export default class User extends Model {
 					type: Sequelize.STRING,
 					allowNull: false,
 					validate: {
-						notEmpty: true
+						notEmpty: true,
+						isEmail: true
 					}
                 },
                 password: {
@@ -39,6 +40,20 @@ export default class User extends Model {
 				},
 				admin: {
 					type: Sequelize.BOOLEAN,
+					allowNull: false,
+					validate: {
+						notEmpty: true
+					}
+				},
+				lifePoints: {
+					type: Sequelize.INTEGER,
+					allowNull: false,
+					validate: {
+						notEmpty: true
+					}
+				},
+				attackPoints: {
+					type: Sequelize.INTEGER,
 					allowNull: false,
 					validate: {
 						notEmpty: true

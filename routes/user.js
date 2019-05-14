@@ -17,7 +17,9 @@ api.post("/register", async (req, res) => {
 				email,
 				password,
 				score: 0,
-				admin: false
+				admin: false,
+				lifePoints: 50,
+				attackPoints: 10
 			});
 
 			await user.save();
@@ -25,7 +27,7 @@ api.post("/register", async (req, res) => {
 			const msg = {
 				to: user.email,
 				from: 'app132847188@heroku.com',
-				subject: 'Your account has been created',
+				subject: 'ZombieMap register',
 				text: 'Your account has been created',
 				html: '<strong>Your account has been created</strong>',
 			};
@@ -115,6 +117,44 @@ api.put("/addScore", async (req, res) => {
 			try {
 				user.update({
 					score: user.score + parseInt(score)
+				});
+				res.status(201).json({ data: { user } });
+			} catch (err) {
+				res.status(400).json({ err: err.message });
+			}
+		} else {
+			res.status(400).json({ err: "user not found" });
+		}
+	});
+});
+
+api.put("/changeLifePoints", async (req, res) => {
+	const { id, lifePoints } = req.body;
+
+	await User.findByPk(id).then(user => {
+		if (user) {
+			try {
+				user.update({
+					lifePoints: lifePoints
+				});
+				res.status(201).json({ data: { user } });
+			} catch (err) {
+				res.status(400).json({ err: err.message });
+			}
+		} else {
+			res.status(400).json({ err: "user not found" });
+		}
+	});
+});
+
+api.put("/changeAttackPoints", async (req, res) => {
+	const { id, attackPoints } = req.body;
+
+	await User.findByPk(id).then(user => {
+		if (user) {
+			try {
+				user.update({
+					attackPoints: attackPoints
 				});
 				res.status(201).json({ data: { user } });
 			} catch (err) {
